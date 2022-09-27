@@ -11,9 +11,9 @@ Let $c_j \in \mathbb{C},\ j = 1,\dots,N$ denote a collection of charge strengths
 
 The Helmholtz FMM computes the potential $u(x)$ (and possibly its gradient and Hessian) of the collection of sources $\mathbf{x}_j$ at target position $\mathbf{x}$. This potential can be computed as
 
-$
-u(x) = \sum_{j=1}^{N}c_jH_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|) - v_j\mathbf{d}_j\cdot\nabla H_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|),
-$
+$$
+u(x) = \sum_{j=1}^{N} c_jH_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|) - v_j\mathbf{d}_j\cdot\nabla H_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|),
+$$
 
 where $H_0^{(1)}$ is the Hankel function of the first kind of order 0. When $\mathbf{x} = \mathbf{x}_j$ the $j$th term is dropped from the sum.
 
