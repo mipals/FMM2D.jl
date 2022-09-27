@@ -1,19 +1,17 @@
 using FMM2D
-using LinearAlgebra
 
 # Simple example for the FMM2D Library
-eps = 10.0^(-5)  # Tolerance
-zk  = 1.1 + im*0 # Wavenumber
+thresh = 10.0^(-5)          # Tolerance
+zk     = rand(ComplexF64)   # Wavenumber
 
 # Source-to-source,
 n = 200
 sources = rand(2,n)
 charges = rand(ComplexF64,n)
-vals = hfmm2d(eps,zk,sources,charges=charges,pg=1)
-vals.pot
+vals    = hfmm2d(thresh,zk,sources,charges=charges,pg=1)
 
 # Source-to-target
 ntargets = 300
 targets  = rand(2,ntargets)
-vals = hfmm2d(eps,zk,sources;charges=charges,targets=targets,pgt=1)
+vals     = hfmm2d(thresh,zk,sources;charges=charges,targets=targets,pgt=1)
 vals.pottarg
