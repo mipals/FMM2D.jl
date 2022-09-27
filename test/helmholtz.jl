@@ -1,5 +1,4 @@
 using FMM2D
-
 using SpecialFunctions
 using LinearAlgebra
 using Random
@@ -21,22 +20,22 @@ Random.seed!(0)
     targets = rand(2, M)
     # Direct computations (N^2)
     refpottarg = FMM2D.h2ddir(zk,sources,targets;dipvecs=dipvecs,dipstr=dipstrs,charges=charges,pgt=3)
-    for tolexp=-14:-1
-        TOL = 0.49*10.0^tolexp
-        U = hfmm2d(TOL,zk, sources; charges=charges, dipstr=dipstrs, dipvecs=dipvecs,pg=3)
+    for tol_exp=-14:-1
+        tolerance = 0.49*10.0^tol_exp
+        U = hfmm2d(tolerance,zk, sources; charges=charges, dipstr=dipstrs, dipvecs=dipvecs,pg=3)
         pot_relerr  = norm(U.pot  - refpot.pottarg)  / norm(refpot.pottarg)
         grad_relerr = norm(U.grad - refpot.gradtarg) / norm(refpot.gradtarg)
         hess_relerr = norm(U.hess - refpot.hesstarg) / norm(refpot.hesstarg)
-        @test pot_relerr  < TOL
-        @test grad_relerr < TOL
-        @test hess_relerr < TOL
+        @test pot_relerr  < tolerance
+        @test grad_relerr < tolerance
+        @test hess_relerr < tolerance
 
-        Utarg = hfmm2d(TOL,zk, sources; charges=charges, dipstr=dipstrs, dipvecs=dipvecs,pgt=3,targets=targets)
+        Utarg = hfmm2d(tolerance,zk, sources; charges=charges, dipstr=dipstrs, dipvecs=dipvecs,pgt=3,targets=targets)
         pot_relerrtarg  = norm(Utarg.pottarg  - refpottarg.pottarg)  / norm(refpottarg.pottarg)
         grad_relerrtarg = norm(Utarg.gradtarg - refpottarg.gradtarg) / norm(refpottarg.gradtarg)
         hess_relerrtarg = norm(Utarg.hesstarg - refpottarg.hesstarg) / norm(refpottarg.hesstarg)
-        @test pot_relerrtarg  < TOL
-        @test grad_relerrtarg < TOL
-        @test hess_relerrtarg < TOL
+        @test pot_relerrtarg  < tolerance
+        @test grad_relerrtarg < tolerance
+        @test hess_relerrtarg < tolerance
     end
 end

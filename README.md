@@ -15,7 +15,7 @@ $$
 u(x) = \sum_{j=1}^{N} c_jH_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|) - v_j\mathbf{d}_j\cdot\nabla H_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|),
 $$
 
-where $H_0^{(1)}$ is the Hankel function of the first kind of order 0. When $\mathbf{x} = \mathbf{x}_j$ the $j$th term is dropped from the sum.
+where $H_0^{(1)}$ is the Hankel function of the first kind of order 0. When $\mathbf{x} = \mathbf{x}_j$ the $j$ th term is dropped from the sum.
 
 
 ## Example

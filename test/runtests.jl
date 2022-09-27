@@ -1,6 +1,3 @@
-using FMM2D
-using Test
+using SafeTestsets
 
-@testset "FMM2D.jl" begin
-    include("helmholtz.jl")
-end
+@safetestset "Helmholtz Wrappers" begin include("helmholtz.jl") end
