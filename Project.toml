@@ -3,6 +3,12 @@ uuid = "2d63477d-9690-4b75-bcc1-c3461d43fecc"
 authors = ["Acme Corp"]
 version = "0.1.0"
 
+[deps]
+FMM2D_jll = "0fc7e017-fbf9-5352-9b8d-9e37f15ce1cd"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+
 [compat]
 julia = "1.3"
 
