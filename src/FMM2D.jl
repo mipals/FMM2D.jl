@@ -3,7 +3,7 @@ module FMM2D
 # Importing binaries
 using FMM2D_jll
 
-# Exporting interface function
+# Exporting interface
 export hfmm2d
 
 # Fortran input/return types
