@@ -1,6 +1,6 @@
 name = "FMM2D"
 uuid = "2d63477d-9690-4b75-bcc1-c3461d43fecc"
-authors = ["Acme Corp"]
+authors = ["Mikkel Paltorp Schmitt"]
 version = "0.1.0"
 
 [deps]
@@ -11,7 +11,8 @@ SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
-julia = "1.6"
+julia = "1.6,1.7,1.8"
+SpecialFunctions = "1.8.1,2"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
