@@ -32,3 +32,7 @@ sources = rand(2,n)
 charges = rand(ComplexF64,n)
 vals = hfmm2d(thresh,zk,sources,charges=charges,pg=1)
 ```
+
+## Related Package
+[FMMLIB2D.jl](https://github.com/ludvigak/FMMLIB2D.jl) interfaces the [FMMLIB2D](https://github.com/zgimbutas/fmmlib2d) library which the [FMM2D library improves on](https://fmm2d.readthedocs.io/en/latest/). Due to missing sufficient documentation this package currently only supports Helmholtz problems whereas FMMLIB2D.jl also includes Laplace problems. A future release of this package is expected to also support Laplace problems as well as the other supported kernels from the FMM2D library.  
+
