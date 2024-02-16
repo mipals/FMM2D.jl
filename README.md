@@ -1,6 +1,7 @@
 # FMM2D.jl
 
 [![Build Status](https://github.com/mipals/FMM2D.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/mipals/FMM2D.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/mipals/FMM2D.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/mipals/FMM2D.jl)
 
 FMM2D.jl is a Julia interface for computing N-body interactions using the [Flatiron Institute's FMM2D library](https://github.com/flatironinstitute/fmm2d/).
 
@@ -32,6 +33,12 @@ sources = rand(2,n)
 charges = rand(ComplexF64,n)
 vals = hfmm2d(thresh,zk,sources,charges=charges,pg=1)
 ```
+
+## Laplace
+
+$$
+u(x) = \sum_{j=1}^{N} \left[c_{j} \text{log}\left(\|x-x_{j}\|\right) + d_{j}v_{j} \cdot \nabla( \text{log}(\|x-x_{j}\|) )\right],
+$$
 
 ## Related Package
 [FMMLIB2D.jl](https://github.com/ludvigak/FMMLIB2D.jl) interfaces the [FMMLIB2D](https://github.com/zgimbutas/fmmlib2d) library which the [FMM2D library improves on](https://fmm2d.readthedocs.io/en/latest/). Due to missing sufficient documentation this package currently only supports Helmholtz problems whereas FMMLIB2D.jl also includes Laplace problems. A future release of this package is expected to also support Laplace problems as well as the other supported kernels from the FMM2D library.  
