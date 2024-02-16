@@ -35,9 +35,10 @@ vals = hfmm2d(thresh,zk,sources,charges=charges,pg=1)
 ```
 
 ## Laplace
+In the Python-documentation the half is missing. However, from the few tests I made it look as it has to be there
 
 $$
-u(x) = \sum_{j=1}^{N} \left[c_{j} \text{log}\left(\|x-x_{j}\|\right) + d_{j}v_{j} \cdot \nabla( \text{log}(\|x-x_{j}\|) )\right],
+u(x) = \sum_{j=1}^{N} \left[c_{j} \frac{\text{log}\left(\|x-x_{j}\|\right)}{2} + d_{j}v_{j} \cdot \nabla( \text{log}(\|x-x_{j}\|) )\right],
 $$
 
 ## Related Package

@@ -77,13 +77,11 @@ end
     dipstrs = rand(ComplexF64,N)
     dipvecs = ones(2, N)/sqrt(2)
     # Direct computations (N^2)
-    # direct_self(sources,charges,dipvecs,dipstr)
     refpot = direct_self(sources,charges,dipvecs,dipstrs)
 
     M = 100
     targets = rand(2, M)
     # Direct computations (N^2)
-    # direct_targ(source, charge, dipvec, dipstr, target)
     refpottarg = direct_targ(sources,charges,dipvecs,dipstrs,targets)
     for tol_exp=-14:-1
         tolerance = 0.49*10.0^tol_exp
@@ -112,13 +110,11 @@ end
     dipstrs = rand(N)
     dipvecs = ones(2, N)/sqrt(2)
     # Direct computations (N^2)
-    # direct_self(sources,charges,dipvecs,dipstr)
     refpot = direct_self(sources,charges,dipvecs,dipstrs)
 
     M = 100
     targets = rand(2, M)
     # Direct computations (N^2)
-    # direct_targ(source, charge, dipvec, dipstr, target)
     refpottarg = direct_targ(sources,charges,dipvecs,dipstrs,targets)
     for tol_exp=-14:-1
         tolerance = 0.49*10.0^tol_exp
