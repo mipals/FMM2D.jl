@@ -24,11 +24,11 @@ function direct_self(source, charges, dipvecs, dipstrs)
                 if i == j
                     continue
                 end
-                r1 = source[1,j]-source[1,i]
-                r2 = source[2,j]-source[2,i]
+                r1 = source[1,i] - source[1,j]
+                r2 = source[2,i] - source[2,j]
                 rsq = r1^2 + r2^2
                 rdotq = r1*dipvec[1,j] + r2*dipvec[2,j]
-                pot[k,i] += charge[j]*log(rsq)/2 + dipstr[j]*rdotq/rsq
+                pot[k,i] += charge[j]*log(rsq)/2 - dipstr[j]*rdotq/rsq
             end
         end
     end
@@ -55,11 +55,11 @@ function direct_targ(source, charges, dipvecs, dipstrs, target)
         dipstr = dipstrs[k,:]
         for i=1:M
             for j=1:N
-                r1 = source[1,j] - target[1,i]
-                r2 = source[2,j] - target[2,i]
+                r1 = target[1,i] - source[1,j]
+                r2 = target[2,i] - source[2,j]
                 rsq = r1^2 + r2^2
                 rdotq = r1*dipvec[1,j] + r2*dipvec[2,j]
-                pot[k,i] += charge[j]*log(rsq)/2 + dipstr[j]*rdotq/rsq
+                pot[k,i] += charge[j]*log(rsq)/2 - dipstr[j]*rdotq/rsq
             end
         end
     end
