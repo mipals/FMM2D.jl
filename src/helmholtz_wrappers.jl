@@ -110,9 +110,9 @@ function hfmm2d(eps::Float64,zk::Union{Float64,ComplexF64},sources::Array{Float6
 
     if pg == 3
         if nd > 1
-            hess = zeros(ComplexF64,nd,4,n)
+            hess = zeros(ComplexF64,nd,3,n)
         else
-            hess = zeros(ComplexF64,4,n)
+            hess = zeros(ComplexF64,3,n)
         end
     end
 
@@ -134,9 +134,9 @@ function hfmm2d(eps::Float64,zk::Union{Float64,ComplexF64},sources::Array{Float6
 
     if pgt == 3
         if nd > 1
-            hesstarg = zeros(ComplexF64,nd,4,nt)
+            hesstarg = zeros(ComplexF64,nd,3,nt)
         else
-            hesstarg = zeros(ComplexF64,4,nt)
+            hesstarg = zeros(ComplexF64,3,nt)
         end
     end
 
@@ -271,9 +271,9 @@ function h2ddir(zk::Union{ComplexF64,Float64},sources::Array{Float64}, targets::
 
     if pgt == 3
         if nd > 1
-            hesstarg = zeros(ComplexF64,nd,4,nt)
+            hesstarg = zeros(ComplexF64,nd,3,nt)
         else
-            hesstarg = zeros(ComplexF64,4,nt)
+            hesstarg = zeros(ComplexF64,3,nt)
         end
     end
 
