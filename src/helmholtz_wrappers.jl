@@ -53,7 +53,7 @@ in the order: ``\\partial_{xx}``, ``\\partial_{yy}``, ``\\partial_{xy}``, ``\\pa
 Non-zero values may indicate insufficient memory available. See the documentation for the FMM2D library.
 If not set (`nothing`), then FMM2D library was never called.
 """
-function hfmm2d(eps::Float64,zk::Union{Float64,ComplexF64},sources::Array{Float64};
+function hfmm2d(;eps::Float64,zk::Union{Float64,ComplexF64},sources::Array{Float64},
         charges::TCN=nothing,dipvecs::TFN=nothing,dipstr::TCN=nothing,targets::TFN=nothing,
         pg::Integer=0,pgt::Integer=0,nd::Integer=1)
 
@@ -171,8 +171,7 @@ end
 
 """
 ```julia
-    vals = h2ddir(zk,sources,targets;
-                    charges=nothing,dipstr=nothing,dipvecs=nothing,pgt=0,nd=1,thresh=1e-16)
+    vals = h2ddir(zk,sources,targets, charges=nothing,dipstr=nothing,dipvecs=nothing,pgt=0,nd=1,thresh=1e-16)
 ```
 This function computes the N-body Helmholtz interactions in two dimensions where the
 interaction kernel is given by ``H_0^{(1)}(kr)`` and its gradients. This is the
@@ -215,7 +214,7 @@ in the order: ``\\partial_{xx}``, ``\\partial_{yy}``, ``\\partial_{xy}``, ``\\pa
 * `vals.gradtarg::Array{ComplexF64}` size (nd,2,nt) or (2,nt) gradient at target locations if requested
 * `vals.hesstarg::Array{ComplexF64}` size (nd,4,nt) or (4,nt) Hessian at target locations if requested
 """
-function h2ddir(zk::Union{ComplexF64,Float64},sources::Array{Float64}, targets::Array{Float64};
+function h2ddir(;zk::Union{ComplexF64,Float64},sources::Array{Float64}, targets::Array{Float64},
                 charges::TCN=nothing,dipvecs::TFN=nothing,dipstr::TCN=nothing,
                 pgt::Integer=0,nd::Integer=1,thresh::Float64=1e-15)
 
