@@ -21,8 +21,9 @@ using FMM2D_jll
 
 # Exporting interface
 export hfmm2d
-export lfmm2d
-export rfmm2d
+export lfmm2d, rfmm2d, cfmm2d
+# export bhfmm
+# export stfmm2d
 
 # Fortran input/return types
 Fd = Ref{Float64}
