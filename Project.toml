@@ -1,22 +1,28 @@
 name = "FMM2D"
 uuid = "2d63477d-9690-4b75-bcc1-c3461d43fecc"
 authors = ["Mikkel Paltorp Schmitt"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 FMM2D_jll = "0fc7e017-fbf9-5352-9b8d-9e37f15ce1cd"
+
+[compat]
+FMM2D_jll = "1.1"
+Aqua = "0.8"
+SafeTestsets = "0.1.0"
+SpecialFunctions = "1.8.1,2"
+LinearAlgebra = "1"
+Test = "1"
+Random = "1"
+julia = "1"
+
+[extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
-[compat]
-SafeTestsets = "0.1.0"
-SpecialFunctions = "1.8.1,2"
-julia = "1.6,1.7,1.8,1.9"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-
 [targets]
-test = ["Test"]
+test = ["Test", "Aqua", "LinearAlgebra", "Random", "SafeTestsets", "SpecialFunctions"]
