@@ -7,7 +7,7 @@ version = "0.2.0"
 FMM2D_jll = "0fc7e017-fbf9-5352-9b8d-9e37f15ce1cd"
 
 [compat]
-FMM2D_jll = "1"
+FMM2D_jll = "1.1"
 Aqua = "0.8"
 SafeTestsets = "0.1.0"
 SpecialFunctions = "1.8.1,2"
