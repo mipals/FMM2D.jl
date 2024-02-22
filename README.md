@@ -8,15 +8,13 @@ FMM2D.jl is a Julia interface for computing N-body interactions using the [Flati
 Currently, the wrapper only wraps the Helmholtz and Laplace functionalities.
 
 ## Helmholtz FMM
-Let $c_j \in \mathbb{C},\ j = 1,\dots,N$ denote a collection of charge strengths, $v_j \in \mathbb{C},\ j = 1,\dots,N$ denote a collection of dipole strengths, and $\mathbf{d}_j\in\mathbb{R}^2,\ j = 1,\dots,N$ denote the corresponding dipole orientation vectors. Furthermore, $k \in \mathbb{C}$ denote the wave number.
-
-The Fast Multipole Method is $O(n)$ algorithm that can be used to approximate the Helmholtz potential $u$ (and its gradient and Hessian) caused by the presence of a collection of sources $\mathbf{x}_j$ at target position $\mathbf{x}$. The direct computation of the potential is 
+Let $c_s \in \mathbb{C},\ s = 1,\dots,N$ denote a collection of charge strengths, $v_s \in \mathbb{C},\ s = 1,\dots,N$ denote a collection of dipole strengths, and $d_s\in\mathbb{R}^2,\ s = 1,\dots,N$ denote the corresponding dipole orientation vectors. Furthermore, $k \in \mathbb{C}$ denotes the wave number. The Helmholtz potential $u$ caused by the presence of a collection of $M$ sources ($x_s$) at $N$ target positions ($x_t$) is computed as
 
 $$
-u(\mathbf{x}) = \sum_{j=1}^{N} c_jH_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|) - v_j\mathbf{d}_j\cdot\nabla H_0^{(1)}(k\|\mathbf{x} - \mathbf{x}_j\|),
+    u\left(x_t\right) = \sum_{s=1}^{M} c_sH_0^{(1)}(k\|x_t - x_s\|) - v_sd_s\cdot\nabla H_0^{(1)}(k\|x_t - x_s\|), \quad t = 1,\dots, N
 $$
 
-where $H_0^{(1)}$ is the Hankel function of the first kind of order 0. When $\mathbf{x} = \mathbf{x}_j$ the $j$ th term is dropped from the sum.
+where $H_0^{(1)}$ is the Hankel function of the first kind of order 0. When $x = x_j$ the $j$ th term is dropped from the sum. Performing this summation would scale as $O(NM)$, but using the Flatiron Insitutes Fast Multipole Library a linear scaling of $O((N + M)\text{log}(\varepsilon^{-1}))$ can be achieved with $\varepsilon$ being the desired relative precision. Note that the library also includes the option for computing the gradient and Hessian of the potential.
 
 
 ### Example
