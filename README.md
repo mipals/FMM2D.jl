@@ -5,7 +5,7 @@
 
 FMM2D.jl is a Julia interface for computing N-body interactions using the [Flatiron Institute's FMM2D library](https://github.com/flatironinstitute/fmm2d/).
 
-Currently, the wrapper only wraps the Helmholtz and Laplace functionalities.
+Currently, the wrapper wraps the Helmholtz, Laplace and Stokes functionalities.
 
 ## Helmholtz FMM
 Let $c_s \in \mathbb{C},\ s = 1,\dots,N$ denote a collection of charge strengths, $v_s \in \mathbb{C},\ s = 1,\dots,N$ denote a collection of dipole strengths, and $d_s\in\mathbb{R}^2,\ s = 1,\dots,N$ denote the corresponding dipole orientation vectors. Furthermore, $k \in \mathbb{C}$ denotes the wave number. The Helmholtz potential $u$ caused by the presence of a collection of $M$ sources ($x_s$) at $N$ target positions ($x_t$) is computed as
@@ -118,14 +118,46 @@ at the source and target locations. When $z = \varepsilon_j$ the $j$ th term is 
 
 
 ## Stokes
+For a source $y$ and target $x$, let $r_i = x_i - y_i$ and $r = \|x-y\|$. The Stokeslet $G_{ij}$ and the (Type I) stresslet $T_{ijk}$ (without the $1/2\pi$ scaling) are
 
 $$
-    u(x) = \sum_{j=1}^NG^\text{stok}(x,x_j)c_j + d_j\cdot T^\text{stok}(x,x_j)\cdot v_j
+    G_{ij}(x,y) = \frac{r_i r_j}{2 r^2} - \frac{\delta_{ij}}{2}\log(r), \qquad
+    T_{ijk}(x,y) = -2\frac{r_i r_j r_k}{r^4}.
 $$
 
+The function `stfmm2d` computes the velocity $u$ caused by a collection of Stokeslets (strengths $\sigma$) and stresslets (strengths $\mu$, orientations $\nu$)
+
 $$
-    p(x) = \sum_{j=1}^NP^\text{stok}(x,x_j)c_j + d_j\cdot \Pi^\text{stok}(x,x_j)\cdot v_j^\top
+    u_i(x) = \sum_{m} G_{ij}(x,y^{(m)})\sigma^{(m)}_j + \sum_{m} T_{ijk}(x,y^{(m)})\mu^{(m)}_j\nu^{(m)}_k,
 $$
+
+together with the associated pressure and, optionally, the velocity gradient. When $x = y^{(m)}$ the $m$ th term is dropped from the sum.
+
+### Example
+```julia
+using FMM2D
+
+thresh = 1e-8
+n = 200
+sources = rand(2,n)
+stoklet = rand(2,n)            # Stokeslet strengths
+strslet = rand(2,n)           # stresslet strengths
+strsvec = rand(2,n)           # stresslet orientations
+
+# Source-to-source (velocity, pressure and gradient)
+vals = stfmm2d(eps=thresh, sources=sources, stoklet=stoklet,
+               strslet=strslet, strsvec=strsvec, ppreg=3)
+vals.pot   # velocity
+vals.pre   # pressure
+vals.grad  # velocity gradient
+
+# Source-to-target
+m = 100
+targets = rand(2,m)
+vals = stfmm2d(eps=thresh, sources=sources, stoklet=stoklet,
+               targets=targets, ppregt=1)
+vals.pottarg
+```
 
 ## Related Package
 [FMMLIB2D.jl](https://github.com/ludvigak/FMMLIB2D.jl) interfaces the [FMMLIB2D](https://github.com/zgimbutas/fmmlib2d) library which the [FMM2D library improves on](https://fmm2d.readthedocs.io/en/latest/). 

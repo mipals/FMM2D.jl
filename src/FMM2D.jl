@@ -22,8 +22,8 @@ using FMM2D_jll
 # Exporting interface
 export hfmm2d
 export lfmm2d, rfmm2d, cfmm2d
+export stfmm2d
 # export bhfmm
-# export stfmm2d
 
 # Fortran input/return types
 Fd = Ref{Float64}
@@ -44,9 +44,11 @@ mutable struct FMMVals
     gradtarg    # Gradient at targets
     hesstarg    # Hessian at targets
     ier         # Error-indicator
+    pre         # Pressure at sources (Stokes only)
+    pretarg     # Pressure at targets (Stokes only)
 end
 function FMMVals()
-    return FMMVals(nothing,nothing,nothing,nothing,nothing,nothing,0)
+    return FMMVals(nothing,nothing,nothing,nothing,nothing,nothing,0,nothing,nothing)
 end
 
 # Include helper functions
@@ -54,5 +56,6 @@ include("helper_functions.jl")
 # Include wrappers
 include("helmholtz_wrappers.jl")
 include("laplace_wrappers.jl")
+include("stokes_wrappers.jl")
 
 end
